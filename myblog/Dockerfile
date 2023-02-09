@@ -1,4 +1,9 @@
+# pull the official base image
 FROM python:3.8.3-alpine
+
+# set work directory
+WORKDIR /usr/src/app
+
 
 
 # install dependencies
@@ -6,13 +11,13 @@ RUN apk update && apk upgrade
 RUN apk add --no-cache gcc \
                        libc-dev \
                        libffi-dev
-WORKDIR /app/
-COPY requirements.txt /app/
+RUN pip install --upgrade pip 
+COPY ./requirements.txt /usr/src/app
 RUN pip install -r requirements.txt
 
-# copy source-codes
-COPY myblog/myblog/ /app/myblog/
+# copy project
+COPY . /usr/src/app
 
 EXPOSE 8000
 
-CMD ["python", "manage.py", "runserver"]
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
