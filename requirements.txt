@@ -1,0 +1,6 @@
+django-cors-headers==3.13.0
+django-restframework==0.0.1
+django-webpack-loader==1.8.1
+djangorestframework==3.14.0
+whitenoise==6.3.0
+django
